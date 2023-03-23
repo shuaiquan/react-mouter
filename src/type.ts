@@ -1,0 +1,21 @@
+import { ReactNode } from "react";
+
+/**
+ * Provider's visible parameter type
+ */
+export type ProviderVisibleParam = boolean | ((param?: object) => boolean);
+
+/**
+ * Provider's real content type
+ */
+export type ProviderContent = ReactNode | ((param?: object) => ReactNode);;
+
+/**
+ * Provider's content parameter type
+ */
+export type ProviderContentParam = () => ProviderContent;
+
+/**
+ * MountContent's subscription type
+ */
+export type Subscription = () => void;
