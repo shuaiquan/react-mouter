@@ -1,6 +1,6 @@
 import Enzyme, { mount } from 'enzyme';
 import React, { Fragment } from 'react';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import Adapter from '@cfaester/enzyme-adapter-react-18';
 import MountConsumer from '../src/MountConsumer';
 import MountProvider from '../src/MountProvider';
 
