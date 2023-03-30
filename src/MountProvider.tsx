@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import * as React from 'react';
 import MountContext from './MountContext';
 import Provider from './Provider';
 import { ProviderContent, ProviderVisibleParam } from './type';
@@ -20,7 +20,7 @@ interface Props {
 /**
  * MountProvider is used to provide ReactNode to be mounted by same-name MountConsumer
  */
-export default class MountProvider extends PureComponent<Props> {
+export default class MountProvider extends React.PureComponent<Props> {
   private provider!: Provider;
 
   componentDidMount(): void {

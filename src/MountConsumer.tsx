@@ -1,4 +1,4 @@
-import React, { PureComponent, ReactNode } from "react";
+import * as  React from "react";
 import MountContext from "./MountContext";
 
 interface Props {
@@ -15,13 +15,13 @@ interface Props {
    * @param views All ReactNode in same-name MountProvider
    * @returns 
    */
-  children?: (views: ReactNode[]) => ReactNode;
+  children?: (views: React.ReactNode[]) => React.ReactNode;
 }
 
 /**
  * MountConsumer is used to mount ReactNode that provide by same-name MountProvider
  */
-export default class MountConsumer extends PureComponent<Props> {
+export default class MountConsumer extends React.PureComponent<Props> {
   componentDidMount(): void {
     const { name } = this.props;
     // register (name => subscription)
