@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "fix": "rm -rf node_modules && npx yarn-deduplicate yarn.lock && yarn"
   },
   "jest": {
     "testEnvironment": "jsdom"
