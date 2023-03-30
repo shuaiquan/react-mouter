@@ -1,12 +1,13 @@
 {
-  "name": "react-mouter",
+  "name": "@s7n/react-mounter",
   "version": "0.0.1",
   "description": "react-mounter is a separate component mounting approach in the React system",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "fix": "rm -rf node_modules && npx yarn-deduplicate yarn.lock && yarn"
+    "fix": "rm -rf node_modules && npx yarn-deduplicate yarn.lock && yarn",
+    "prepublish": "npm run build"
   },
   "jest": {
     "testEnvironment": "jsdom"
@@ -37,5 +38,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.0.2"
-  }
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "files": [
+    "/dist"
+  ]
 }
