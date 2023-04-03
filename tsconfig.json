@@ -1,17 +1,19 @@
 {
-    "compilerOptions": {
-        "strict": true,
-        "target": "ES5",
-        "jsx": "react",
-        "module": "CommonJS",
-        "outDir": "./dist",
-        "allowJs": false,
-        "declaration": true,
-        "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
-        "lib": ["ESNext"]
-    },
-    "include": [
-        "./src/**/*"
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES5",
+    "jsx": "react",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "allowJs": false,
+    "declaration": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "ESNext"
     ]
+  },
+  "include": [
+    "./src/**/*",
+  ]
 }
