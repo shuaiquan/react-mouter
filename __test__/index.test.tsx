@@ -85,8 +85,8 @@ describe('Normal Render', () => {
 
       return (
         <Fragment>
-          <MountConsumer name="case5" params={{ value }} />
-          <MountProvider name="case5" visible={(params: any) => params && params.value % 2 === 0}>
+          <MountConsumer name="case5" param={{ value }} />
+          <MountProvider name="case5" visible={(param: any) => param && param.value % 2 === 0}>
             <h1>
               Mounted By React-Mounter
             </h1>
@@ -109,10 +109,10 @@ describe('Normal Render', () => {
 
       return (
         <Fragment>
-          <MountConsumer name="case6" params={{ value }} />
+          <MountConsumer name="case6" param={{ value }} />
           <MountProvider name="case6">
-            {(params: any) => (
-              <h1>{params.value}</h1>
+            {(param) => (
+              <h1>{param.value}</h1>
             )}
           </MountProvider>
         </Fragment>

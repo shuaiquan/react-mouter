@@ -37,23 +37,23 @@ export default class Provider {
     return this.id === provider.id;
   }
 
-  isVisible(params?: object) {
+  isVisible(param?: any) {
     const { visible } = this;
-    
+
     if (typeof visible === 'function') {
-      return visible(params);
+      return visible(param);
     }
 
     return visible;
   }
 
-  getContent(params?: object): ReactNode {
+  getContent(param?: any): ReactNode {
     // ProviderContentParam => ProviderContent
     const content = this.content();
 
     // ProviderContent => ReactNode
     if (typeof content === 'function') {
-      return content(params);
+      return content(param);
     }
 
     return content;

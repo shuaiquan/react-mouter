@@ -3,12 +3,12 @@ import { ReactNode } from "react";
 /**
  * Provider's visible parameter type
  */
-export type ProviderVisibleParam = boolean | ((param?: object) => boolean);
+export type ProviderVisibleParam = boolean | ((param?: any) => boolean);
 
 /**
  * Provider's real content type
  */
-export type ProviderContent = ReactNode | ((param?: object) => ReactNode);;
+export type ProviderContent = ReactNode | ((param?: any) => ReactNode);;
 
 /**
  * Provider's content parameter type

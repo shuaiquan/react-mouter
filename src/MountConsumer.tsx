@@ -9,7 +9,7 @@ interface Props {
   /**
    * Param will deliver to MountProvider's (visible and children)'s Function
    */
-  params?: object;
+  param?: any;
   /**
    * 
    * @param views All ReactNode in same-name MountProvider
@@ -35,7 +35,7 @@ export default class MountConsumer extends React.PureComponent<Props> {
     if (prevName !== name) {
       // remove (prevName => subscription) dependency
       MountContext.Instance.unregisterSubscription(prevName, this.subscription);
-      
+
       // register (name => subscription)
       MountContext.Instance.registerSubscription(name, this.subscription);
     }
@@ -52,13 +52,13 @@ export default class MountConsumer extends React.PureComponent<Props> {
   }
 
   render() {
-    const { name, params, children } = this.props;
+    const { name, param, children } = this.props;
 
     // get all same-name providers
     const providers = MountContext.Instance.getProviderByName(name);
 
     // filter by visible
-    const views = providers.filter(provider => provider.isVisible(params)).map(provider => provider.getContent(params));
+    const views = providers.filter(provider => provider.isVisible(param)).map(provider => provider.getContent(param));
 
     if (children && typeof children === 'function') {
       return <div>{children(views)}</div>;
