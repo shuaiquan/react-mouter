@@ -5,6 +5,9 @@
 
 它可以有效地解决组件挂载受到组件层级结构限制的问题，其能力有点类似于 `createPortal` 但是它的语法更加简洁。
 
+[![npm version](https://img.shields.io/npm/v/@s7n/react-mounter.svg?style=flat)](https://www.npmjs.com/package/@s7n/react-mounter)
+[![npm downloads](https://img.shields.io/npm/dm/@s7n/react-mounter.svg?style=flat)](https://www.npmjs.com/package/@s7n/react-mounter)
+
 ## 安装
 将 `@s7n/react-mounter` 安装为依赖，就可以在你的 React App 中使用了：
 ```shell

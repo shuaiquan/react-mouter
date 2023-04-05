@@ -5,6 +5,9 @@ ENGLISH | [中文文档](./README.CN.md)
 
 It effectively solves the problem of component mounting being limited by the component hierarchy, somewhat similar in capability to `createPortal` but with a more concise syntax.
 
+[![npm version](https://img.shields.io/npm/v/@s7n/react-mounter.svg?style=flat)](https://www.npmjs.com/package/@s7n/react-mounter)
+[![npm downloads](https://img.shields.io/npm/dm/@s7n/react-mounter.svg?style=flat)](https://www.npmjs.com/package/@s7n/react-mounter)
+
 ## Installation
 To use `@s7n/react-mounter` with your React App, install it as a dependency
 ```shell
