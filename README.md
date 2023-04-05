@@ -1,57 +1,42 @@
 ENGLISH | [中文文档](./README.CN.md)
 
 # React Mounter
-**React Mounter** is a separate component mounting approach in the React system
+**`React Mounter`** is a separate component mounting approach based on React。
 
-Declare the components to be mounted under the MountProvider component, and then it will be selected to render under the same-name MountConsumer component.
+It effectively solves the problem of component mounting being limited by the component hierarchy, somewhat similar in capability to `createPortal` but with a more concise syntax.
 
-It allows component mounting and rendering without being limited by component levels, and has a very good effect in implementing UI decoupling and injection in applications
+## Installation
+To use `@s7n/react-mounter` with your React App, install it as a dependency
+```shell
+# If you use npm:
+npm install @s7n/react-mounter 
 
-### Differences from createPortal
-Instead of needing to know the DOM of the target, we can provide the structure under the MountProvider to the MountConsumer for rendering by specifying a consistent "name".
-
-## API
-
-### MountProvider
-| Props | Type | Default | Description |
-| --- | --- | --- | --- |
-| name | string |  | Mount Identification: children will be mount by same-name MountConsumer |
-| visible? | boolean &#124; ((param?: object) => boolean) | true | Determines whether to mount. When use Function, param is passed through MountConsumer |
-| children? | ReactNode &#124; ((param?: object) => ReactNode) | null | ReactNode or a Function that takes param and returns the ReactNode
- |
-
-### MountConsumer
-| Props | Type | Default | Description |
-| --- | --- | --- | --- |
-| name | string |  | Mount Identification: mount ReactNode that provide by same-name MountProvider |
-| params? | object | true | Param will deliver to MountProvider's (visible and children)'s Function |
-| children? | ((views: ReactNode[]) => ReactNode) |  | Receives all the functions of the mounted view and returns a ReactNode |
+# If you use yarn:
+yarn add @s7n/react-mounter
+```
 
 ## Quick Start
-### Mount Views
+Declare the components to be mounted under the `MountProvider` component, and then it will be selected to render under the `MountConsumer` component with **same name**.
 ```javascript
-function Content() {
-  // ...
-
+function Header() {
   return (
     <div>
-      {/* ... */}
-      <MountProvider name="header-action">
-        <h1>
-          Mounted By React-Mounter
-        </h1>
-      </MountProvider>
+      <span>Welcome</span>
+      <MountConsumer name="header-action" />  
     </div>
   )
 }
 
-function Header() {
-  // ...
+function Content() {
+  function onClick() {
+    // do something ...
+  }
 
   return (
     <div>
-      {/* ... */}
-      <MountConsumer name="header-action" />
+      <MountProvider name="header-action">
+        <Button onClick={onClick}>Content Action</Button>
+      </MountProvider>
     </div>
   )
 }
@@ -65,19 +50,49 @@ function App() {
   )
 }
 ```
+For more information, see API and DEMO
 
-### Use Param
+## API
+### MountProvider
+| Props | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | string |  | Mount Identification: children will be mount by same-name MountConsumer |
+| visible? | boolean &#124; ((param?: object) => boolean) | true | Determines whether to mount. When use Function, param is passed through MountConsumer |
+| children? | ReactNode &#124; ((param?: object) => ReactNode) | null | ReactNode or a Function that takes param and returns the ReactNode
+ |
+
+### MountConsumer
+| Props | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | string |  | Mount Identification: mount ReactNode that provide by same-name MountProvider |
+| param? | any | | Param will deliver to MountProvider's (visible and children)'s Function |
+| children? | ((views: ReactNode[]) => ReactNode) |  | Receives all the mounted view and returns a ReactNode |
+
+## DEMO
+Pass parameters through 'param', and control whether components render through 'visible'
 ```javascript
+function Header() {
+  const [value, setValue] = useState(10);
+
+  return (
+    <div>
+      <MountConsumer 
+        name="header-action" 
+        param={{ value }}
+      />
+    </div>
+  )
+}
+
 function Content() {
   return (
     <div>
-      {/* ... */}
       <MountProvider 
         name="header-action"
-        visible={(params: any) => params && params.value % 2 === 0}
+        visible={(param: any) => param && param.value % 2 === 0}
       >
         {
-          (params: any) => {
+          (param: any) => {
             if (param?.value !== undefined) {
               return <h1>current value is: {param.value}</h1>
             }
@@ -89,47 +104,12 @@ function Content() {
     </div>
   )
 }
-
-function Header() {
-  const [value, setValue] = useState(10);
-
-  return (
-    <div>
-      {/* ... */}
-      <MountConsumer 
-        name="header-action" 
-        params={{ value }}
-      />
-    </div>
-  )
-}
 ```
 
-### Use Children In MountConsumer
-```javascript
-function Content() {
-  return (
-    <div>
-      <MountProvider name="header-action">
-        <h1>
-          Mounted By React-Mounter
-        </h1>
-      </MountProvider>
-    </div>
-  )
-}
+## Design inspiration
+The design inspiration comes from the usage of [`Template`](https://devexpress.github.io/devextreme-reactive/react/core/docs/reference/template/) and [`TemplatePlaceholder`](https://devexpress.github.io/devextreme-reactive/react/core/docs/reference/template-placeholder/ ) in `DevExtreme Reactive`.
 
-function Header() {
-  const [value, setValue] = useState(10);
+### Differences from createPortal
+Instead of needing to know the DOM of the target, we can provide the structure under the MountProvider to the MountConsumer for rendering by specifying a consistent "name".
 
-  return (
-    <div>
-       <MountConsumer name="header-action">
-        {(views) => (
-          <div className="container">{views}</div>
-        )}
-       </MountConsumer>
-    </div>
-  )
-}
-```
+It has a very good effect in implementing UI decoupling and injection in applications.
