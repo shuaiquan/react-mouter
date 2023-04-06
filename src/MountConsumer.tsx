@@ -16,6 +16,10 @@ interface Props {
    * @returns 
    */
   children?: (views: React.ReactNode[]) => React.ReactNode;
+  /**
+   * An alternate UI to render when there is no mountprovider to mount ui
+   */
+  fallback?: React.ReactNode;
 }
 
 /**
@@ -52,7 +56,7 @@ export default class MountConsumer extends React.PureComponent<Props> {
   }
 
   render() {
-    const { name, param, children } = this.props;
+    const { name, param, children, fallback = null } = this.props;
 
     // get all same-name providers
     const providers = MountContext.Instance.getProviderByName(name);
@@ -62,6 +66,11 @@ export default class MountConsumer extends React.PureComponent<Props> {
 
     if (children && typeof children === 'function') {
       return <div>{children(views)}</div>;
+    }
+
+    // when there is no mountprovider to mount ui
+    if (views.length === 0) {
+      return fallback;
     }
 
     return (
