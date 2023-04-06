@@ -126,4 +126,23 @@ describe('Normal Render', () => {
     tree.setProps({ value: 10 });
     expect(tree.find('h1').text()).toEqual('10')
   })
+
+  it('MountConsumer Render Fallback', () => {
+    function Unit() {
+      return (
+        <Fragment>
+          <MountConsumer name="case7" fallback={(<div className="fallback7">I'm fallback</div>)} />
+          <MountProvider name="case7">
+            <h1 className="7-h1">shuaiquan</h1>
+          </MountProvider>
+          <MountConsumer name="case8" fallback={(<div className="fallback8">I'm fallback</div>)} />
+        </Fragment>
+      );
+    }
+
+    const tree = mount(<Unit />);
+
+    expect(tree.find('.fallback7').exists()).toBeFalsy();
+    expect(tree.find('.fallback8').exists()).toBeTruthy();
+  })
 });
