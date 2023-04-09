@@ -69,6 +69,7 @@ function App() {
 | name | string |  | 挂载点标识：其会挂载渲染同名 MountProvider 提供的 ReactNode |
 | param? | any | | 会传递给 MountProvider 中 visible 和 children 的参数 |
 | children? | ((views: ReactNode[]) => ReactNode) |  | 接收所有挂载视图，并返回 ReactNode |
+| fallback? | ReactNode | null | 当没有任何组件挂载时的默认渲染UI ｜
 
 ## DEMO
 通过 `param` 传递参数，通过 `visible` 控制组件是否渲染

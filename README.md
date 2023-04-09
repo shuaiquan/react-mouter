@@ -70,6 +70,7 @@ For more information, see API and DEMO
 | name | string |  | Mount Identification: mount ReactNode that provide by same-name MountProvider |
 | param? | any | | Param will deliver to MountProvider's (visible and children)'s Function |
 | children? | ((views: ReactNode[]) => ReactNode) |  | Receives all the mounted view and returns a ReactNode |
+| fallback? | ReactNode | null | A fallback UI when there is nothing to mount |
 
 ## DEMO
 Pass parameters through 'param', and control whether components render through 'visible'
