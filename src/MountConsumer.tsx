@@ -65,7 +65,7 @@ export default class MountConsumer extends React.PureComponent<Props> {
     const views = providers.filter(provider => provider.isVisible(param)).map(provider => provider.getContent(param));
 
     if (children && typeof children === 'function') {
-      return <div>{children(views)}</div>;
+      return children(views);
     }
 
     // when there is no mountprovider to mount ui
@@ -73,8 +73,6 @@ export default class MountConsumer extends React.PureComponent<Props> {
       return fallback;
     }
 
-    return (
-      <div>{views}</div>
-    );
+    return views;
   }
 }
