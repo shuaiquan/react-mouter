@@ -144,5 +144,33 @@ describe('Normal Render', () => {
 
     expect(tree.find('.fallback7').exists()).toBeFalsy();
     expect(tree.find('.fallback8').exists()).toBeTruthy();
-  })
+  });
+
+  it('ReRender when mountProvider unmount', () => {
+    function Unit(props: { useProvider?: boolean }) {
+      const { useProvider = true } = props;
+
+      return (
+        <Fragment>
+          <MountConsumer name="case9" />
+          {useProvider && <MountProvider name="case9">
+            <h1>
+              Mounted By React-Mounter
+            </h1>
+          </MountProvider>}
+        </Fragment>
+      );
+    }
+
+    const tree = mount(<Unit useProvider={true} />);
+
+    expect(tree.find('h1').exists()).toBeTruthy();
+
+    tree.setProps({ useProvider: false }, () => {
+      setTimeout(() => {
+        // must more render once
+        expect(tree.find('h1').exists()).toBeFalsy();
+      }, 5);
+    });
+  });
 });

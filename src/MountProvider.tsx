@@ -55,6 +55,8 @@ export default class MountProvider extends React.PureComponent<Props> {
 
   componentWillUnmount(): void {
     MountContext.Instance.unMountProvider(this.props.name, this.provider);
+     // broadcast component update
+     MountContext.Instance.trigger(this.props.name);
   }
 
   private getChildrenNode = () => {
