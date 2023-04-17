@@ -1,6 +1,6 @@
 {
   "name": "@s7n/react-mounter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "react-mounter is a separate component mounting approach in the React system",
   "main": "dist/index.js",
   "scripts": {

@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.0.3] - 2023.04.18
+### Fixed
+- Fixed unique key warning when render multi-views
+- Update README
+
 ## [1.0.2] - 2023.04.11
 ### Fixed
 - `MounterProvider` unmount will trigger `MounterConsumer` re-render.
