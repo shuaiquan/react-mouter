@@ -113,6 +113,8 @@ function Content() {
 ## Design inspiration
 The design inspiration comes from the usage of [`Template`](https://devexpress.github.io/devextreme-reactive/react/core/docs/reference/template/) and [`TemplatePlaceholder`](https://devexpress.github.io/devextreme-reactive/react/core/docs/reference/template-placeholder/ ) in `DevExtreme Reactive`.
 
+For more design Ideas, check out ["Concise Architecture — Component Separation Mounting"](https://medium.com/p/d76dc9234e08)
+
 ### Differences from createPortal
 Instead of needing to know the DOM of the target, we can provide the structure under the MountProvider to the MountConsumer for rendering by specifying a consistent "name".
 
