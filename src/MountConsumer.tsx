@@ -64,15 +64,19 @@ export default class MountConsumer extends React.PureComponent<Props> {
     // filter by visible
     const views = providers.filter(provider => provider.isVisible(param)).map(provider => provider.getContent(param));
 
+    // try to fixed unique key warning
+    // const viewsWithKey = React.Children.map(views, (child) => React.cloneElement(child!, { key: keyMap.get(child) }))
+    const viewsWithKey = React.Children.toArray(views);
+
     if (children && typeof children === 'function') {
-      return children(views);
+      return children(viewsWithKey);
     }
 
     // when there is no mountprovider to mount ui
-    if (views.length === 0) {
+    if (viewsWithKey.length === 0) {
       return fallback;
     }
 
-    return views;
+    return viewsWithKey;
   }
 }
